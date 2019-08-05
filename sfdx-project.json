@@ -1,0 +1,9 @@
+{
+  "packageDirectories": [
+    {
+      "path": "sfdx-source/force-app",
+      "default": true
+    }
+  ],
+  "sourceApiVersion": "46.0"
+}
