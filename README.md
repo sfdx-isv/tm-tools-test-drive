@@ -10,7 +10,18 @@ Before getting started, you'll need to prepare your "test drive" environment by 
 
 **IMPORTANT:** The TM-Tools plugin only supports MacOS. These instructions may not work on other platforms (ie. Windows or Linux)
 
-### Step 1: Make sure that the Salesforce CLI and Git are installed on your local machine
+### Step 1: Request access to the TM-Tools DevHub
+The TM-Tools Test Drive process uses a special scratch org snapshot to simulate the starting point of a TM1 org migration.
+
+This snapshot can only be used to create scratch orgs if you use the TM-Tools DevHub.
+
+To get a User Account for this DevHub, you will need to create a GitHub Issue using this template:
+
+[DevHub User Account Request](https://github.com/sfdx-isv/tm-tools-test-drive/issues/new?assignees=VivekMChawla&labels=access-request&template=devhub-user-account-request.md&title=DevHub+User+Account+Request)
+
+Please allow up to 1-2 business days for your request to be processed.
+
+### Step 2: Make sure that the Salesforce CLI and Git are installed on your local machine
 
 Both the Salesforce CLI and Git must be installed on your machine before you can proceed. 
 
@@ -18,9 +29,6 @@ If you don't already have both of these installed, please see the following guid
 
 * Learn how to [Install the Salesforce CLI](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm) from the Salesforce DX Developer Guide
 * Learn how to [Set Up Git](https://help.github.com/articles/set-up-git/) from the GitHub Help site
-
-### Step 2: Request access to the TM-Tools DevHub
-Details Pending. Need to create an Issue template to make it easier for people to request access.
 
 ### Step 3: Authenticate your CLI to the TM-Tools Test Drive DevHub
 Using the credentials provided to you after requesting access to the TM-Tools Test Drive DevHub, authenticate your CLI to that DevHub using the following command
