@@ -20,7 +20,7 @@ If you don't already have both of these installed, please see the following guid
 * Learn how to [Set Up Git](https://help.github.com/articles/set-up-git/) from the GitHub Help site
 
 ### Step 2: Request access to the TM-Tools DevHub
-Details TBD
+Details Pending. Need to create an Issue template to make it easier for people to request access.
 
 ### Step 3: Authenticate your CLI to the TM-Tools Test Drive DevHub
 Using the credentials provided to you after requesting access to the TM-Tools Test Drive DevHub, authenticate your CLI to that DevHub using the following command
@@ -107,7 +107,7 @@ If the output to the **right** of the last `/` character is not `tm-tools-test-d
 
 ### Step 1: Analyze
 
-Details TBA
+<!--Details TBA-->
 
 ```shell
 sfdx tmtools:tm1:analyze -d MIGRATION_TEST
@@ -115,7 +115,7 @@ sfdx tmtools:tm1:analyze -d MIGRATION_TEST
 
 ### Step 2: Extract
 
-Details TBA
+<!--Details TBA-->
 
 ```shell
 sfdx tmtools:tm1:extract -s MIGRATION_TEST
@@ -123,7 +123,7 @@ sfdx tmtools:tm1:extract -s MIGRATION_TEST
 
 ### Step 3: Transform
 
-Details TBA
+<!--Details TBA-->
 
 ```shell
 sfdx tmtools:tm1:transform -s MIGRATION_TEST
@@ -131,7 +131,7 @@ sfdx tmtools:tm1:transform -s MIGRATION_TEST
 
 ### Step 4: Clean
 
-Details TBA
+<!--Details TBA-->
 
 ```shell
 sfdx tmtools:tm1:clean -s MIGRATION_TEST
@@ -139,15 +139,32 @@ sfdx tmtools:tm1:clean -s MIGRATION_TEST
 
 ### Step 5: Deploy
 
-Details TBA
+<!--Details TBA-->
 
 ```shell
 sfdx tmtools:tm2:deploy -s MIGRATION_TEST
 ```
 
-### Step 6: Load
+### Step 6: Activate the Imported Territory2 Model
 
-Details TBA
+Open Setup in the Territory Management Test org and do the following.
+
+1. Type `terr` in the Setup menu's quick find box
+2. Click on the **Territory Models** setup item
+3. Click on the **Imported Territory** link to open the Territory Model Detail page
+4. Click the **Activate** button
+5. You'll be presented with an **Activate Territory Hierarchy** confirmation pop-up. Click the **Activate** button to start the process
+6. Wait for the model to activate
+    * It should only take 20 or 30 seconds for the model to activate
+    * Check the current status by refreshing the page in your browser
+    * Once the activation is complete, the state will say **Active**
+
+
+### Step 7: Load
+
+<!--Details TBA-->
+
+Please note that the `tmtools:tm2:load` command will not allow execution unless you have activated the Territory2 Model as directed in the previous step.
 
 ```shell
 sfdx tmtools:tm2:load -s MIGRATION_TEST
