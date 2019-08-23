@@ -1,6 +1,6 @@
 #!/bin/bash
 # Specify the alias or username associated with your connection to the TM-Tools Test Drive DevHub.
-DEV_HUB_ALIAS="DevHub-PBO"
+DEV_HUB_ALIAS="DevHub:TMT-Test-Drive"
 
 # You SHOULD NOT need to change anything below this line.
 PROJECT_ROOT="."
