@@ -12,36 +12,30 @@ API_VERSION="46.0"
 
 createScratchOrg() {
   # Create a new scratch org using the scratch-def.json locally configured for this project. 
-  echo "Executing force:org:create -f $SCRATCH_ORG_CONFIG -a $SCRATCH_ORG_ALIAS -v $DEV_HUB_ALIAS -s -d $SCRATCH_ORG_EXPIRATION_DAYS -w $SCRATCH_ORG_WAIT_TIME --apiversion $API_VERSION --json"
+  echo "Creating scratch org $SCRATCH_ORG_ALIAS using $DEV_HUB_ALIAS."
   echo ""
   echo "Scratch org creation may take several minutes. Please be patient."
   echo ""
-  (cd $PROJECT_ROOT && exec sfdx force:org:create -f $SCRATCH_ORG_CONFIG -a $SCRATCH_ORG_ALIAS -v $DEV_HUB_ALIAS -s -d $SCRATCH_ORG_EXPIRATION_DAYS -w $SCRATCH_ORG_WAIT_TIME --apiversion $API_VERSION --json)
+  (cd $PROJECT_ROOT && exec sfdx force:org:create -f $SCRATCH_ORG_CONFIG -a $SCRATCH_ORG_ALIAS -v $DEV_HUB_ALIAS -s -d $SCRATCH_ORG_EXPIRATION_DAYS -w $SCRATCH_ORG_WAIT_TIME --apiversion $API_VERSION --json  --json > /dev/null 2>&1)
   if [ $? -ne 0 ]; then
     echo ""
     echo "Scratch org could not be created. Aborting Script."
     exit 1
   fi
-  echo ""
   echo "------------------------------"
 }
 
 deleteScratchOrg () {
   # Delete the current scratch org.
-  echo "Executing force:org:delete -p -u $SCRATCH_ORG_ALIAS -v $DEV_HUB_ALIAS --json"
+  echo "Deleting scratch org $SCRATCH_ORG_ALIAS (if present)"
   echo ""
-  (cd $PROJECT_ROOT && exec sfdx force:org:delete -p -u $SCRATCH_ORG_ALIAS -v $DEV_HUB_ALIAS --json)
-  if [ $? -ne 0 ]; then
-    echo ""
-    echo "The alias $SCRATCH_ORG_ALIAS did not previously exist. You can ignore the error this caused."
-  fi
-  echo ""
+  (cd $PROJECT_ROOT && exec sfdx force:org:delete -p -u $SCRATCH_ORG_ALIAS -v $DEV_HUB_ALIAS --json > /dev/null 2>&1)
   echo "------------------------------"
 }
 
 generatePassword () {
   # Generates a password for the admin user of the scratch org. Necessary to use workbench.
-  echo "Executing force:user:password:generate -u $SCRATCH_ORG_ALIAS --json"
+  echo "Generating password for $SCRATCH_ORG_ALIAS (useful if you want to use non-CLI tools)"
   echo ""
   sfdx force:user:password:generate -u $SCRATCH_ORG_ALIAS --json
   echo ""
@@ -50,13 +44,13 @@ generatePassword () {
 
 openScratchOrg () {
   # Opens the specified scratch org.
-  echo "Executing force:org:open -u $SCRATCH_ORG_ALIAS"
-  echo ""
   if [ ! -z $1 ]; then
     ORG_PATH_TO_OPEN="-p $1"
   else
     ORG_PATH_TO_OPEN=""
   fi
+  echo "Opening scratch org $SCRATCH_ORG_ALIAS"
+  echo ""
   sfdx force:org:open -u $SCRATCH_ORG_ALIAS $ORG_PATH_TO_OPEN
   echo ""
   echo "------------------------------"
@@ -64,10 +58,9 @@ openScratchOrg () {
 
 pushSfdxSource () {
   # Pushes SFDX Source from the current projet to the specified scratch org.
-  echo "Executing force:source:push -u $SCRATCH_ORG_ALIAS"
+  echo "Pushing basic org config to $SCRATCH_ORG_ALIAS"
   echo ""
-  (cd $PROJECT_ROOT && exec sfdx force:source:push -u $SCRATCH_ORG_ALIAS --json)
-  echo ""
+  (cd $PROJECT_ROOT && exec sfdx force:source:push -u $SCRATCH_ORG_ALIAS --json > /dev/null 2>&1)
   echo "------------------------------"
 }
 
@@ -89,6 +82,6 @@ echo ''
 pushSfdxSource
 
 echo ''
-openScratchOrg lightning/setup/SetupOneHome/home
+openScratchOrg lightning/setup/Territories/home
 
 echo ''
