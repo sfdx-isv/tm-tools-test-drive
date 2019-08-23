@@ -1,0 +1,8 @@
+./build-tm1-scratch-org.sh
+sfdx tmtools:tm1:analyze -d MIGRATION_TEST
+sfdx tmtools:tm1:extract -s MIGRATION_TEST
+sfdx tmtools:tm1:transform -s MIGRATION_TEST
+sfdx tmtools:tm1:clean -s MIGRATION_TEST
+sfdx tmtools:tm2:deploy -s MIGRATION_TEST
+sfdx tmtools:tm2:load -s MIGRATION_TEST
+sfdx tmtools:tm2:deploysharing -s MIGRATION_TEST
